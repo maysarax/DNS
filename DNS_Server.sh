@@ -12,6 +12,8 @@ apt-get install -y bind9 bind9utils bind9-doc dnsutils
 
 nano /etc/bind/named.conf.local
 
+/etc/bind/db.local 
+
 //Forward Zone
 
 zone "xxxx.local" IN { //Domain name
@@ -85,6 +87,55 @@ dig www.xxxx.local
 
 dig -x 0.0.0.0
 
+
+netstat -tulpn | grep :53
+
+
+sudo apt-get install iptables-persistent
+
+//Open up the file /etc/iptables/rules.v4 using any editor,
+
+nano /etc/iptables/rules.v4,
+
+//Start or restart iptables-persistent service.
+
+service iptables-persistent restart
+
+//Now check port 53 is open or not using command:
+
+iptables -L -n
+
+
+//Test Master DNS Server
+
+//Edit file /etc/resolv.conf,
+
+nano /etc/resolv.conf
+
+//And add your Master DNS server details,
+
+search unixmen.local
+nameserver 0.0.0.0
+
+//Reboot the system or restart the networking service.
+
+service networking restart
+
+//Now let us check Master DNS server is working or not using the following commands:
+
+dig master.xxxxx.local
+
+dig -x master.xxxx.local
+
+dig xxxxx.local
+
+dig -x xxxx.local
+
+nslookup xxxxx.local
+
+host xxxx.local
+
+host master.xxxx.local
 
 
 
