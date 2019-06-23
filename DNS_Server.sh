@@ -18,7 +18,7 @@ nano /etc/bind/named.conf.local
 
 zone "xxxx.local" IN { //Domain name
      type master; //Primary DNS
-     file "/etc/bind/fwd.itzgeek.local.db"; //Forward lookup file
+     file "/etc/bind/fwd.xxxx.local.db"; //Forward lookup file
      allow-update { none; }; // Since this is the primary DNS, it should be none.
 };
 
@@ -28,7 +28,7 @@ zone "xxxx.local" IN { //Domain name
 
 zone "0.0.0.in-addr.arpa" IN { //Reverse lookup name, should match your network in reverse order
      type master; // Primary DNS
-     file "/etc/bind/rev.itzgeek.local.db"; //Reverse lookup file
+     file "/etc/bind/rev.xxxxx.local.db"; //Reverse lookup file
      allow-update { none; }; //Since this is the primary DNS, it should be none.
 };
 
@@ -56,7 +56,7 @@ named-checkconf
 
 #For foward zone
 
-named-checkzone itzgeek.local /etc/bind/fwd.xxxxx.local.db
+named-checkzone xxxxx.local /etc/bind/fwd.xxxxx.local.db
 
 #For reverse zone
 
